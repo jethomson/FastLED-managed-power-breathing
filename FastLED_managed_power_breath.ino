@@ -29,14 +29,14 @@
   maximum brightness is M then calling setBrightness() with a value greater than M will
   result in FastLED setting the brightness to exactly M.
 
-  A breath effect ramps the brightness up until it reaches the maximum brightness then ramps
+  A breathing effect ramps the brightness up until it reaches the maximum brightness then ramps
   the brightness back down to a minimum brightness then starts the whole cycle over again. A
   naive approach would be to use a triangle wave that goes from 0 to 255 and back down to 0
   as the input for setBrightness(), but if the power limited maximum brightness M is less
   than 255 then the brightness will plateau at M, and the brightness will remain fixed until
-  the triangle wave input falls below M again. My breath() function achieves a continually
+  the triangle wave input falls below M again. My breathing() function achieves a continually
   changing brightness by setting the peak of the triangle wave to M. However, M changes
-  based on the number of LEDs currently lit and their colors, so breath() recalculates M
+  based on the number of LEDs currently lit and their colors, so breathing() recalculates M
   before setting a new brightness value.
   
   https://github.com/FastLED/FastLED/wiki/Power-notes
@@ -53,7 +53,7 @@
 
 CRGB leds[NUM_LEDS];
 
-void breath(uint16_t interval) {
+void breathing(uint16_t interval) {
     const uint8_t min_brightness = 2;
     static uint8_t delta = 0; // goes up to 255 then overflows back to 0
 
